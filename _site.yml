@@ -1,11 +1,18 @@
-name: "my-website"
+name: "Brandon Trahms"
 output_dir: "."
 navbar:
-  title: "My Website"
+  title: "Brandon Trahms"
   left:
-    - text: "Home"
+    - text: "About Me"
       href: index.html
+    - text: "Experience"
+      href: Experience.html 
+    - text: "Projects"
+      href: Projects.html
   right:
+    - text: "LinkedIn"
+      icon: fa-linkedin
+      href: https://www.linkedin.com/in/brandon-trahms/
     - text: "Github"
       icon: fa-github
       href: https://github.com/
