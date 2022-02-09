@@ -1,0 +1,33 @@
+---
+title: "Education"
+output: 
+  html_document: 
+    css: columns.css
+---
+
+\
+\
+\
+
+
+## Degrees
+
+August 2018 - May 2022 
+
+#### Bachelors of Science, Major in Computer Science, Minor in Statistics \
+California State University Chico \
+
+  ● Upsilon Pi Epsilon Honors Society. \
+  ● In-Major GPA: 3.461 \
+\
+\
+\
+
+## Certifications
+
+May 2022
+
+#### Certificate, Data Science \
+California State University Chico \ 
+
+   ● 34-36 units \ 

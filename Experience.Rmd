@@ -1,4 +1,32 @@
 ---
 title: "Experience"
-output: html_document
+output:
+  html_document: 
+    css: columns.css
 ---
+\
+\
+August 2021 - Present \
+
+### Student Researcher 
+#### Chico Research of Environmental Science and Technology 
+● Using Machine learning and Sensor Fusion to track endangered 
+animals \
+● Multi-University Collaboration  \
+● Field data collection in collaboration with domain experts \
+● Using MATLAB for image processing and Machine Learning/Computer
+Vision \
+● Co-authored - Satellite, Aerial, and Ground Sensor Fusion Experiment
+for the Management of Elephants, Rhinos, and Poaching Prevention \
+\
+\
+August 2021 - December 2021 \
+
+### Data Science Intern 
+#### Center for Healthy Communities at Chico State 
+● Data analysis from a group of 50 different subcontracting organizations
+across the state of California. \
+● Work and collaborate as part of Research and Evaluation team \
+● Using Slack, Github, Microsoft Teams, and Box to collaborate on shared
+documents. \
+● Text Mining for internal evaluation and research \

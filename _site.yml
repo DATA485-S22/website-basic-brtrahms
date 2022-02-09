@@ -3,10 +3,10 @@ output_dir: "."
 navbar:
   title: "Brandon Trahms"
   left:
-    - text: "About Me"
-      href: index.html
     - text: "Experience"
-      href: Experience.html 
+      href: Experience.html
+    - text: "Education"
+      href: Education.html
     - text: "Projects"
       href: Projects.html
   right:
@@ -15,4 +15,4 @@ navbar:
       href: https://www.linkedin.com/in/brandon-trahms/
     - text: "Github"
       icon: fa-github
-      href: https://github.com/
+      href: https://github.com/brtrahms

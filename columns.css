@@ -1,0 +1,7 @@
+.cols {display: flex;
+       flex-direction: row;}
+       
+body{
+  font-family: Georgia;
+  line-height: 2em;
+}

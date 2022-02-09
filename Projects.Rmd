@@ -1,4 +1,64 @@
 ---
 title: "Projects"
-output: html_document
+output:
+  html_document: 
+    css: columns.css
 ---
+\
+
+### ERP Research in Sensor Fusion Systems
+#### Co-Authored Paper / Student Research Project
+● Multi-University Research performed for Elephants, Rhinos, and People organization \
+● Investigation of Sensor Fusion System in application for large animal preservation \
+● Field data collection at CSU Chico Farm \
+● SSD and YOLOv2 trained on satellite and ground images of Cows, Elephants, and Cars in MATLAB \
+● Conference Paper - Satellite, Aerial, and Ground Sensor Fusion Experiment for the Management of
+Elephants, Rhinos, and Poaching Prevention \
+\
+
+### CHC Exploratory Text Mining
+#### Data Science Internship Project
+● Text Data taken from Center for Healthy Communities’ 50 subcontractors and their various partners \
+● Building a NLP for automated internal evaluation of subcontractor meetings using \
+● Data cleaning and alteration was done in collaboration with CHC public health experts \
+● Exploratory analysis of tokenized data across various sub-groups \
+● Unsupervised topic modeling and t-SNE cluster visualization \
+\
+
+### Generative Adversarial Network(GAN) Facial Detection Network Stress Test
+#### Capstone Research Project
+● Investigating common facial detection networks’ accuracy using GANs \
+● Using OpenCV pre trained Facial Detection Networks\
+● Building GANs through Tensorflow Python library\
+● Utilizing Facial Detection Networks to train GANs\
+\
+
+### UFC Statistical Predictor
+#### Data Science Project
+● Analyzed, cleaned, and messaged historical MMA fight data\
+● Trained and Validated classifiers in R to predict winners and method of winning\
+● Tested models on live UFC events\
+\
+
+### Reinforcement Learning Game and Educational Tool
+#### Software Engineering and Design Project
+● Working as part of a team practicing Agile software design methods\
+● Used Github to work collaboratively on shared files\
+● Conducted weekly scrum meetings to plan on meeting requirements and overcoming blocks\
+● Designed Game Environment to work with user coded Machine Learning files using UML\
+\
+
+### Forward and Backward Propagation Exploration
+#### Algorithm Exploration Project
+● Built multiple Neural Network representations in C++ without ML library assistance\
+● Applied linear algebra to Networks to show Forward Propagation\
+● Calculated loss and applied derived equations to weights of the Networks\
+● Processed over multiple supervised learning scenarios showing gradient descent\
+\
+
+### Oracle Database for Olympic Statistics
+#### Cloud Hosted Database Project
+● Collaborating as part of a team with differing skill sets\
+● Installed an Oracle SQL database onto a AWS VM instance\
+● Loaded Olympic sports statistics dataset into the database\
+● Created SQL queries, tables, and views to conduct analysis to answer research questions\
