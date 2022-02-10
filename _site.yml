@@ -9,6 +9,8 @@ navbar:
       href: Education.html
     - text: "Projects"
       href: Projects.html
+    - text: "Blog Posts"
+      href: BlogPosts.html
   right:
     - text: "LinkedIn"
       icon: fa-linkedin
