@@ -27,3 +27,40 @@ Most people have seen deep fakes and AI generated images online but people often
 
 The basic design of a Adversarial system include two different networks, the generator and the discriminator. The Generator will simply take in a random seed as an input and use that number to calculate pixel values. The Discriminator will be paired with a training set which is a mix of real images and generated images. It will then train over this set and classify them as either real or fake. Both networks will then be trained on the accuracy of the discriminator but in opposite directions. While the discriminator will try to maximize it's accuracy, the generator will try to minimize it by generating images that the discriminator will think its real. This process has been used and has produce some facinating results in the machine learning sphere.
 
+# Tidy Models Tutorial
+
+In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters.
+
+## Step 1 - Libraries 
+```{r warning = FALSE}
+library(tidymodels)
+library(tidyverse)
+library(ggplot2)
+```
+
+
+## Step 2 - Import dataset
+```{r}
+CalCOFI <- read.csv("CalCOFI.csv")
+```
+
+
+## Step 3 - Initial Visualization
+```{r warning=FALSE}
+CalCOFI %>%
+ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
+```
+
+
+## Step 4 - Build and Fit Model
+```{r}
+# Build
+model <- linear_reg() %>%
+  set_engine("lm")
+
+# Fit
+fit <- model %>%
+  fit(T_degC~Depthm, data = CalCOFI)
+
+tidy(fit)
+```
