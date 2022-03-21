@@ -1,7 +1,30 @@
 ---
-title: "Hello There"
+title: "About Me"
+output:
+  html_document: 
+    css: columns.css
 ---
 
-Welcome to my website! 
+:::::: {.cols data-latex=""}
 
-Here you can see all the awesome projects I'm working on. 
+::: {.col data-latex="{0.1\textwidth}"}
+
+![](brandon smile.jpg){height=80%, width=80%}
+:::
+
+::: {.col data-latex="{0.5\textwidth}"}
+
+\
+
+ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.4\textwidth}"}
+
+I am Graduating with B.S. in Computer Science May 2022 with software design and development experience, skills in data analytics, and a passion for developing machine learning solutions. Specific areas of interest and knowledge include: data analysis, data mining, collaboration tools for software development, sensor networks, application development, computer and machine vision. Generally seeking data science and, or software development roles with emphasis on data-driven applications and systems.
+
+:::
+
+::::::
