@@ -305,42 +305,61 @@ $(document).ready(function () {
 </div>
 <div id="tidy-models-tutorial" class="section level1">
 <h1>Tidy Models Tutorial</h1>
-<p>In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters. Here we will see what the relationship between temperature and depth shallower than 500 meters.</p>
-<div id="step-1---libraries" class="section level2">
-<h2>Step 1 - Libraries</h2>
-<p>Here</p>
+<p>In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters. Here we will see what the relationship between temperature and depth shallower than 500 meters.<br />
+</p>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
 <pre class="r"><code>library(tidymodels)
 library(tidyverse)
 library(ggplot2)
 library(readr)</code></pre>
+<p><br />
+</p>
 </div>
-<div id="step-2---import-dataset" class="section level2">
-<h2>Step 2 - Import dataset</h2>
-<pre class="r"><code>CalCOFI &lt;- read.csv(&quot;CalCOFI.csv&quot;)</code></pre>
-</div>
-<div id="step-3---data-filter-initial-visualization" class="section level2">
-<h2>Step 3 - Data filter &amp; Initial Visualization</h2>
-<pre class="r"><code>CalCOFI &lt;- CalCOFI %&gt;%
-filter(Depthm &lt; 500)
+<div id="step-1---import-and-setup-dataset" class="section level2">
+<h2>Step 1 - Import and Setup Dataset</h2>
+<p>Our first step will be to import CalCOFI data and filter for our desired depth, done by the R code below.</p>
+<pre class="r"><code>#Base Dataset
+CalCOFI &lt;- read.csv(&quot;CalCOFI.csv&quot;)
 
-CalCOFI %&gt;%
-ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
-<p><img src="BlogPosts_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+# Depth lower than 500 filtered out
+CalCOFI &lt;- CalCOFI %&gt;%
+filter(Depthm &lt; 500)</code></pre>
+<p><br />
+</p>
 </div>
-<div id="step-4---build-and-fit-model" class="section level2">
-<h2>Step 4 - Build and Fit Model</h2>
+<div id="step-2---initial-visualization" class="section level2">
+<h2>Step 2 - Initial Visualization</h2>
+<p>Before we begin modeling, we will want to see if linear modeling is applicable in this case. We can do this by some data visualization with a linear trend line, done by the R code below.</p>
+<pre class="r"><code>CalCOFI %&gt;%
+ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p><img src="BlogPosts_files/figure-html/unnamed-chunk-3-1.png" width="672" /><br />
+Based on the graph above, the fit can be roughly described as linear and makes linear regression applicable.<br />
+</p>
+</div>
+<div id="step-3---build-and-fit-model" class="section level2">
+<h2>Step 3 - Build and Fit Model</h2>
+<p>Now we can Build and fit out model to our data, done by the R code below.</p>
 <pre class="r"><code># Build
 model &lt;- linear_reg() %&gt;%
   set_engine(&quot;lm&quot;)
+
 # Fit
 fit &lt;- model %&gt;%
-  fit(T_degC~Depthm, data = CalCOFI)
-tidy(fit)</code></pre>
+  fit(T_degC~Depthm, data = CalCOFI)</code></pre>
+<p><br />
+</p>
+</div>
+<div id="step-4---interpretation" class="section level2">
+<h2>Step 4 - Interpretation</h2>
+<p>Our last step is to interpret the model we have fit. So to view our coefficients, see R code below.</p>
+<pre class="r"><code>tidy(fit)</code></pre>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)  15.0    0.00415       3609.       0
 ## 2 Depthm       -0.0239 0.0000225    -1065.       0</code></pre>
+<p>From this we can see an association of depth to temperature of -0.0239. This means that on average, for every single meter increase of depth would result a decrease in temperature of 0.0239 Celsius.</p>
 </div>
 </div>
 

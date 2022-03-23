@@ -32,41 +32,61 @@ The basic design of a Adversarial system include two different networks, the gen
 # Tidy Models Tutorial
 
 In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters. Here we will see what the relationship between temperature and depth shallower than 500 meters.
+\
 
-## Step 1 - Libraries 
+## Libraries 
 
-Here 
 ```{r, warning=FALSE, results='hide', message=FALSE}
 library(tidymodels)
 library(tidyverse)
 library(ggplot2)
 library(readr)
 ```
+\
 
+## Step 1 - Import and Setup Dataset
 
-## Step 2 - Import dataset
+Our first step will be to import CalCOFI data and filter for our desired depth, done by the R code below.
 ```{r}
+#Base Dataset
 CalCOFI <- read.csv("CalCOFI.csv")
-```
 
-
-## Step 3 - Data filter & Initial Visualization
-```{r, warning=FALSE, results='hide', message=FALSE}
+# Depth lower than 500 filtered out
 CalCOFI <- CalCOFI %>%
 filter(Depthm < 500)
+```
+\
+
+## Step 2 - Initial Visualization
+
+Before we begin modeling, we will want to see if linear modeling is applicable in this case. We can do this by some data visualization with a linear trend line, done by the R code below.
+```{r, warning=FALSE, results='hide', message=FALSE}
 
 CalCOFI %>%
 ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
 ```
+\
+Based on the graph above, the fit can be roughly described as linear and makes linear regression applicable.
+\
 
+## Step 3 - Build and Fit Model
 
-## Step 4 - Build and Fit Model
+Now we can Build and fit out model to our data, done by the R code below.
 ```{r}
 # Build
 model <- linear_reg() %>%
   set_engine("lm")
+
 # Fit
 fit <- model %>%
   fit(T_degC~Depthm, data = CalCOFI)
+```
+\
+
+## Step 4 - Interpretation
+
+Our last step is to interpret the model we have fit. So to view our coefficients, see R code below.
+```{r}
 tidy(fit)
 ```
+From this we can see an association of depth to temperature of -0.0239. This means that on average, for every single meter increase of depth would result a decrease in temperature of 0.0239 Celsius.
