@@ -56,7 +56,6 @@ CalCOFI <- CalCOFI %>%
 filter(Depthm < 500)
 
 CalCOFI %>%
-head(10) %>%
 ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
 ```
 
