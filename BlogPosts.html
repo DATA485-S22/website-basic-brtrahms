@@ -305,51 +305,27 @@ $(document).ready(function () {
 </div>
 <div id="tidy-models-tutorial" class="section level1">
 <h1>Tidy Models Tutorial</h1>
-<p>In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters.</p>
+<p>In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters. Here we will see what the relationship between temperature and depth shallower than 500 meters.</p>
 <div id="step-1---libraries" class="section level2">
 <h2>Step 1 - Libraries</h2>
-<pre class="r"><code>library(tidymodels)</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;tune&#39;:
-##   method                   from   
-##   required_pkgs.model_spec parsnip</code></pre>
-<pre><code>## -- Attaching packages -------------------------------------- tidymodels 0.1.4 --</code></pre>
-<pre><code>## v broom        0.7.12     v recipes      0.1.17
-## v dials        0.1.0      v rsample      0.1.1 
-## v dplyr        1.0.7      v tibble       3.1.6 
-## v ggplot2      3.3.5      v tidyr        1.2.0 
-## v infer        1.0.0      v tune         0.1.6 
-## v modeldata    0.1.1      v workflows    0.2.4 
-## v parsnip      0.1.7      v workflowsets 0.1.0 
-## v purrr        0.3.4      v yardstick    0.0.9</code></pre>
-<pre><code>## -- Conflicts ----------------------------------------- tidymodels_conflicts() --
-## x purrr::discard() masks scales::discard()
-## x dplyr::filter()  masks stats::filter()
-## x dplyr::lag()     masks stats::lag()
-## x recipes::step()  masks stats::step()
-## * Dig deeper into tidy modeling with R at https://www.tmwr.org</code></pre>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v readr   2.0.1     v forcats 0.5.1
-## v stringr 1.4.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x readr::col_factor() masks scales::col_factor()
-## x purrr::discard()    masks scales::discard()
-## x dplyr::filter()     masks stats::filter()
-## x stringr::fixed()    masks recipes::fixed()
-## x dplyr::lag()        masks stats::lag()
-## x readr::spec()       masks yardstick::spec()</code></pre>
-<pre class="r"><code>library(ggplot2)
+<p>Here</p>
+<pre class="r"><code>library(tidymodels)
+library(tidyverse)
+library(ggplot2)
 library(readr)</code></pre>
 </div>
 <div id="step-2---import-dataset" class="section level2">
 <h2>Step 2 - Import dataset</h2>
 <pre class="r"><code>CalCOFI &lt;- read.csv(&quot;CalCOFI.csv&quot;)</code></pre>
 </div>
-<div id="step-3---initial-visualization" class="section level2">
-<h2>Step 3 - Initial Visualization</h2>
-<pre class="r"><code>CalCOFI %&gt;%
+<div id="step-3---data-filter-initial-visualization" class="section level2">
+<h2>Step 3 - Data filter &amp; Initial Visualization</h2>
+<pre class="r"><code>CalCOFI &lt;- CalCOFI %&gt;%
+filter(Depthm &lt; 500)
+
+CalCOFI %&gt;%
+head(10) %&gt;%
 ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="BlogPosts_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
 <div id="step-4---build-and-fit-model" class="section level2">
@@ -357,17 +333,15 @@ ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = &quot;lm&quot;
 <pre class="r"><code># Build
 model &lt;- linear_reg() %&gt;%
   set_engine(&quot;lm&quot;)
-
 # Fit
 fit &lt;- model %&gt;%
   fit(T_degC~Depthm, data = CalCOFI)
-
 tidy(fit)</code></pre>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-## 1 (Intercept) 12.9     0.00415       3108.       0
-## 2 Depthm      -0.00912 0.0000106     -860.       0</code></pre>
+## 1 (Intercept)  15.0    0.00415       3609.       0
+## 2 Depthm       -0.0239 0.0000225    -1065.       0</code></pre>
 </div>
 </div>
 

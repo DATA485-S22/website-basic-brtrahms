@@ -31,10 +31,12 @@ The basic design of a Adversarial system include two different networks, the gen
 
 # Tidy Models Tutorial
 
-In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters.
+In this tutorial I will walk you through how to fit a linear model to a data set using the tidy models package. In this tutorial I will be using a CalCOFI data set of oceanic measurements of temperature in Celsius and depth in Meters. Here we will see what the relationship between temperature and depth shallower than 500 meters.
 
 ## Step 1 - Libraries 
-```{r warning = FALSE}
+
+Here 
+```{r, warning=FALSE, results='hide', message=FALSE}
 library(tidymodels)
 library(tidyverse)
 library(ggplot2)
@@ -45,13 +47,16 @@ library(readr)
 ## Step 2 - Import dataset
 ```{r}
 CalCOFI <- read.csv("CalCOFI.csv")
-
 ```
 
 
-## Step 3 - Initial Visualization
-```{r warning=FALSE}
+## Step 3 - Data filter & Initial Visualization
+```{r, warning=FALSE, results='hide', message=FALSE}
+CalCOFI <- CalCOFI %>%
+filter(Depthm < 500)
+
 CalCOFI %>%
+head(10) %>%
 ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = "lm", se = FALSE)
 ```
 
@@ -61,10 +66,8 @@ ggplot(aes(Depthm, T_degC)) + geom_point() + geom_smooth(method = "lm", se = FAL
 # Build
 model <- linear_reg() %>%
   set_engine("lm")
-
 # Fit
 fit <- model %>%
   fit(T_degC~Depthm, data = CalCOFI)
-
 tidy(fit)
 ```
