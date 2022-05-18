@@ -360,6 +360,101 @@ fit &lt;- model %&gt;%
 ## 1 (Intercept)  15.0    0.00415       3609.       0
 ## 2 Depthm       -0.0239 0.0000225    -1065.       0</code></pre>
 <p>From this we can see an association of depth to temperature of -0.0239. This means that on average, for every single meter increase of depth would result a decrease in temperature of 0.0239 Celsius.</p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="fooling-facial-recognition-software-using-convoltional-generative-adversarial-networks" class="section level1">
+<h1>Fooling Facial Recognition Software Using Convoltional Generative Adversarial Networks</h1>
+<p><br />
+</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Facial Recognition software is becoming more and more prevalent in our daily lives from our phones to law enforcement. To help prevent the misuse of this kind of software we should further our understanding of these algorithms so they don’t remain as mysterious black boxes. This project’s goal was to test the accuracy of open-source pre-trained Facial Recognition models using Deep Convolutional Generative Adversarial Networks or DCGANs. The DCGAN was used to generate images from random noise which would then be scored based on what confidence score it can elicit from pre-existing facial recognition models for a specific person’s Identity (such as The Rock). This project focuses on generating images that are identified as one of four recognized Identities by the recognition model. The generated test images that had a high confidence score of being a recognized image were subsequently looked at by humans to see if they looked like their classified identities. This will give us insight on how an end user can create fake generated images and still elicit high confidence scores from facial recognition software.<br />
+</p>
+</div>
+<div id="experiment-overview" class="section level2">
+<h2>Experiment Overview</h2>
+<p><br />
+<img src="Fooling%20Facial%20Recognition%20Models%20Using%20Deep%20Convolutional%20Generative%20Adversarial%20Networks.jpg" /><br />
+</p>
+<div id="noise" class="section level3">
+<h3>Noise:</h3>
+<ul>
+<li>normally distributed random numbers<br />
+</li>
+</ul>
+</div>
+<div id="generator-deep-convolutional-generator" class="section level3">
+<h3>Generator: Deep Convolutional Generator</h3>
+<p>Input Layer:</p>
+<ul>
+<li><p>100 values Hidden Layers:</p></li>
+<li><p>Fully Connected</p></li>
+<li><p>Transposed Convolution A.K.A Deconvolution</p></li>
+<li><p>Activation Function: LeakyReLU</p></li>
+</ul>
+<p>Output Layer:</p>
+<ul>
+<li>224 x 224 pixels</li>
+<li>Activation Function: Sigmoid</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="facial-recognition-model" class="section level3">
+<h3>Facial Recognition Model</h3>
+<p>VGGFace2 Models implemented in Keras</p>
+<ul>
+<li>Input preprocessing</li>
+<li>Convolutional Architectures</li>
+<li>ResNet50 and SENet50</li>
+</ul>
+<p>Output:</p>
+<ul>
+<li>Confidences on 8631 Identities</li>
+</ul>
+</div>
+<div id="training-the-generator" class="section level3">
+<h3>Training the Generator</h3>
+<p>Setup in Jupyter using Python</p>
+<ul>
+<li>Each Generator focuses on 1 Identity</li>
+<li>Batch size of 5</li>
+<li>Loss based on how high a confidence the Recognition Model outputs</li>
+<li>Loss Calculated using Cross Entropy</li>
+<li>Exponentially Decaying Learning Rate</li>
+</ul>
+<p><br />
+</p>
+</div>
+<div id="gpu" class="section level3">
+<h3>GPU:</h3>
+<ul>
+<li>NVIDIA GeForce GTX 1660 Ti with Max-Q Design</li>
+</ul>
+</div>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p><br />
+</p>
+<div id="real-face-controls" class="section level3">
+<h3>Real Face Controls</h3>
+<p><img src="Conntrol.jpg" /></p>
+<p><br />
+</p>
+</div>
+<div id="generated-images" class="section level3">
+<h3>Generated Images</h3>
+<p><img src="Generated.jpg" /></p>
+<p><br />
+</p>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>The results of this project show that it is possible to train a Generator for each Identity in the VGGFace2 and achieve a high confidence score. This method is still contingent on having access to the full model. This indicates that open source models such as these can be fooled by potentially malicious actors while other closed-source models may remain safe, but more research would be advised. Future research would best be targeted at replication using smaller generators, testing other learning rates and loss functions, testing this method for Facial Detectors since they are often paired with Facial Recognition, and using this method to improve model accuracy through training with generated false images.</p>
 </div>
 </div>
 

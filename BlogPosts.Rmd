@@ -90,3 +90,87 @@ Our last step is to interpret the model we have fit. So to view our coefficients
 tidy(fit)
 ```
 From this we can see an association of depth to temperature of -0.0239. This means that on average, for every single meter increase of depth would result a decrease in temperature of 0.0239 Celsius.
+
+\
+
+# Fooling Facial Recognition Software Using Convoltional Generative Adversarial Networks
+
+\
+
+## Background
+Facial Recognition software is becoming more and more prevalent in our daily lives from our phones to law enforcement. To help prevent the misuse of this kind of software we should further our understanding of these algorithms so they don't remain as mysterious black boxes. This project’s goal was to test the accuracy of open-source pre-trained Facial Recognition models using Deep Convolutional Generative Adversarial Networks or DCGANs. The DCGAN was used to generate images from random noise which would then be scored based on what confidence score it can elicit from pre-existing facial recognition models for a specific person’s Identity (such as The Rock). This project focuses on generating images that are identified as one of four recognized Identities by the recognition model. The generated test images that had a high confidence score of being a recognized image were subsequently looked at by humans to see if they looked like their classified identities. This will give us insight on how an end user can create fake generated images and still elicit high confidence scores from facial recognition software.
+\
+
+## Experiment Overview
+\
+![](Fooling Facial Recognition Models Using Deep Convolutional Generative Adversarial Networks.jpg)
+\
+
+### Noise:
+  - normally distributed random numbers
+  
+\
+
+### Generator: Deep Convolutional Generator
+Input Layer:
+
+  - 100 values
+Hidden Layers:
+
+  - Fully Connected
+  - Transposed Convolution A.K.A Deconvolution
+  - Activation Function: LeakyReLU
+  
+Output Layer:
+
+  - 224 x 224 pixels
+  - Activation Function: Sigmoid
+  
+\
+
+### Facial Recognition Model
+VGGFace2 Models implemented in Keras
+
+  - Input preprocessing
+  - Convolutional Architectures
+  - ResNet50 and SENet50
+  
+Output:
+
+  - Confidences on 8631 Identities
+
+\
+
+### Training the Generator
+Setup in Jupyter using Python
+
+  - Each Generator focuses on 1 Identity
+  - Batch size of 5
+  - Loss based on how high a confidence the Recognition Model outputs
+  - Loss Calculated using Cross Entropy
+  - Exponentially Decaying Learning Rate
+  
+\
+
+### GPU: 
+  - NVIDIA GeForce GTX 1660 Ti with Max-Q Design 
+
+\
+
+## Results
+\
+
+### Real Face Controls
+![](Conntrol.jpg)
+
+\
+
+### Generated Images
+
+![](Generated.jpg)
+
+\
+
+## Conclusion
+
+The results of this project show that it is possible to train a Generator for each Identity in the VGGFace2 and achieve a high confidence score. This method is still contingent on having access to the full model. This indicates that open source models such as these can be fooled by potentially malicious actors while other closed-source models may remain safe, but more research would be advised. Future research would best be targeted at replication using smaller generators, testing other learning rates and loss functions, testing this method for Facial Detectors since they are often paired with Facial Recognition, and using this method to improve model accuracy through training with generated false images.
